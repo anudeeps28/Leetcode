@@ -14,35 +14,14 @@ class Solution {
 public:
     // this function will return the head of the 2 merged linked lists
     ListNode* mergeTwoLists(ListNode* head1, ListNode* head2) { // takes as input the heads of linked lists
-        ListNode* p1 = head1; // pointer (to a node)
-        ListNode* p2 = head2; // pointer (to a node)
-        ListNode* dummyNode = new ListNode(-1); // a new node
-        ListNode* p3 = dummyNode;
+        if (head1 == NULL) return head2;
+        if (head2 == NULL) return head1;
 
-        while (p1 != NULL && p2 != NULL) {
-            if (p1->val < p2->val) {
-                p3->next = p1;
-                p1 = p1->next;
-            } else {
-                p3->next = p2;
-                p2 = p2->next;
-            }
-            p3 = p3->next;
-        }
-        
-        while(p1 != NULL) {
-            p3->next = p1;
-            p1 = p1->next;
-            p3 = p3->next;
-        }
-
-        while(p2 != NULL) {
-            p3->next = p2;
-            p2 = p2->next;
-            p3 = p3->next;
-        }
-
-        return dummyNode->next;
+        if(head1->val>=head2->val) head2->next = mergeTwoLists(head1, head2-> next);
+        else{
+            head1->next = mergeTwoLists(head1->next, head2);
+            head2 = head1;
+        }return head2;
 
     }
 };
