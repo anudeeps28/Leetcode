@@ -14,15 +14,19 @@ class Solution {
 public:
     // this function will return the head of the 2 merged linked lists
     ListNode* mergeTwoLists(ListNode* head1, ListNode* head2) { // takes as input the heads of linked lists
+
+        ListNode* result;
         if (head1 == NULL) return head2;
         if (head2 == NULL) return head1;
 
-        if(head1->val>=head2->val) head2->next = mergeTwoLists(head1, head2-> next);
-        else{
+        if (head1->val < head2->val) {
+            result = head1;
             head1->next = mergeTwoLists(head1->next, head2);
-            head2 = head1;
-        }return head2;
-
+        } else {
+            result = head2;
+            head2->next = mergeTwoLists(head1, head2->next);
+        }
+        return result;
     }
 };
 
