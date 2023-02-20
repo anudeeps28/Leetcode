@@ -1,22 +1,21 @@
 #include<iostream>
 #include<string>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        if (s.size() != t.size()) {
+
+        sort(s.begin(), s.end());
+        sort(t.begin(), t.end());
+
+        if (s == t) {
+            return true;
+        } else {
             return false;
         }
-        int array[26] = {0};
-        for (int i = 0; i < s.size(); i++) {
-            array[s[i] - 'a']++;
-            array[t[i] - 'a']--;
-        }
-        for (int i = 0; i < 26; i++)
-            if (array[i]) return false;
-        return true;
         
     }
 };
