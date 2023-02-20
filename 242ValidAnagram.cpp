@@ -1,25 +1,23 @@
 #include<iostream>
 #include<string>
-#include<unordered_set>
+#include<vector>
 using namespace std;
 
 class Solution {
 public:
     bool isAnagram(string s, string t) {
-        unordered_set<char> s1;
-        unordered_set<char> s2;
-
-        for (int i = 0; i < s.size(); i ++) {
-            s1.insert(s[i]);
+        if (s.size() != t.size()) {
+            return false;
         }
-        for (int i = 0; i < t.size(); i ++) {
-            s2.insert(t[i]);
+        int array[26] = {0};
+        for (int i = 0; i < s.size(); i++) {
+            array[s[i] - 'a']++;
+            array[t[i] - 'a']--;
         }
-
-        if (s1 == s2) {
-            return true;
-        }
-        return false;
+        for (int i = 0; i < 26; i++)
+            if (array[i]) return false;
+        return true;
+        
     }
 };
 
