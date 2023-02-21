@@ -6,19 +6,25 @@ using namespace std;
 class Solution {
 public:
     vector<int> productExceptSelf(vector<int>& nums) {
-        vector<int> answer;
+        vector<int> answer(nums.size(), 1);
+        
+        int temp = 1;
         for (int i = 0; i < nums.size(); i++) {
-            int temp;
-            int product;
-            temp = nums[i];
-            nums[i] = 1;
-            product = accumulate(nums.begin(), nums.end(), 1, multiplies<int>());
-            answer.push_back(product);
-            nums[i] = temp;
-        }   
+            answer[i] = temp;
+            temp = temp*nums[i];
+        }
+
+        int temp2 = 1;
+        for (int i = nums.size()-1; i >= 0; i--) {
+            answer[i] = answer[i]*temp2;
+            temp2 = temp2* nums[i];
+        }
+
         return answer;
+
     }
 };
+
 
 int main() {
     Solution s;
