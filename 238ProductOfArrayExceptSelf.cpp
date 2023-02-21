@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include<numeric>
 using namespace std;
 
 class Solution {
@@ -7,14 +8,14 @@ public:
     vector<int> productExceptSelf(vector<int>& nums) {
         vector<int> answer;
         for (int i = 0; i < nums.size(); i++) {
-            int temp = 1;
-            for (int j = 0; j < nums.size(); j++) {
-                if (i != j) {
-                    temp = temp*nums[j];
-                }
-            }
-            answer.push_back(temp);
-        }
+            int temp;
+            int product;
+            temp = nums[i];
+            nums[i] = 1;
+            product = accumulate(nums.begin(), nums.end(), 1, multiplies<int>());
+            answer.push_back(product);
+            nums[i] = temp;
+        }   
         return answer;
     }
 };
