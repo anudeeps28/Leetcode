@@ -1,22 +1,24 @@
 #include<iostream>
 #include<vector>
+#include<unordered_set>
 using namespace std;
 
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        if (nums.empty()) {
-            return 0;
-        }
-        sort(nums.begin(), nums.end());
+        unordered_set<int>s(nums.begin(), nums.end());
+        int longest = 0;
+        for(auto &n: s){
+            //if this is the start of the sequence
+            if(!s.count(n - 1)){
+                int length = 1; 
+                while(s.count(n + length))
+                    ++length;
+                longest = max(longest, length);
+            } 
 
-        int counter = 0;
-        for (int i = 0; i < nums.size(); i++) {
-            if (nums[i] + 1 == nums[i+1]) {
-                counter++;
-            }
         }
-        return counter+1;
+        return longest;
     }
 };
 
