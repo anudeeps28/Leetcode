@@ -1,4 +1,3 @@
-
 #include<iostream>
 using namespace std;
 
@@ -47,5 +46,6 @@ int main () {
     
     TreeNode* node7 = new TreeNode(1, node5, node6);
 
+    s.isSymmetric(node7);
 
 }
