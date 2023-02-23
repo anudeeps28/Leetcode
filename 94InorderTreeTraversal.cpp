@@ -39,7 +39,6 @@ int main() {
 
     TreeNode* root = &node1;
     vector<int> inorder = sol.inorderTraversal(root);
-    
     for (auto i : inorder) {
         cout << i << endl;
     }
