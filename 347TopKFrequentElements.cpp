@@ -13,7 +13,6 @@ public:
             m[nums[i]]++;
         }
         
-        // frequency: number
         vector<vector<int>> buckets(n + 1);
         for (auto it = m.begin(); it != m.end(); it++) {
             buckets[it->second].push_back(it->first);
@@ -22,7 +21,7 @@ public:
         vector<int> result;
         
         for (int i = n; i >= 0; i--) {
-            if (result.size() >= k) { // this is how you stop the push_back() after 2 iterations
+            if (result.size() >= k) {
                 break;
             }
             if (!buckets[i].empty()) {
