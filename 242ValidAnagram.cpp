@@ -19,7 +19,7 @@ public:
             tmap[t[i]]++;
         }
 
-        for (int i = 0; i < s.size(); i++) {
+        for (int i = 0; i < smap.size(); i++) {
             if (smap[i] != tmap[i]) {
                 return false;
             } 
