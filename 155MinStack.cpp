@@ -10,35 +10,34 @@ public:
     
     void push(int val) {
         stk.push(val);
-        if (minStk.empty()) {
-            minStk.push(val);
-        } else if (val < minStk.top()) {
-            minStk.push(val);
-        } else if(val > minStk.top()) {
-            minStk.push(minStk.top());
+        
+        if (minStk.empty() || val < minStk.top().first) {
+            minStk.push({val, 1});
+        } else if (val == minStk.top().first) {
+            minStk.top().second++;
         }
-
     }
     
     void pop() {
+        if (stk.top() == minStk.top().first) {
+            minStk.top().second--;
+            if (minStk.top().second == 0) {
+                minStk.pop();
+            }
+        }
         stk.pop();
-        minStk.pop();
-        
     }
     
     int top() {
         return stk.top();
-        
     }
     
     int getMin() {
-        return minStk.top();
-        
+        return minStk.top().first;
     }
 private:
     stack<int> stk;
-    stack<int> minStk;
-
+    stack<pair<int, int>> minStk;
 };
 
 int main () {
