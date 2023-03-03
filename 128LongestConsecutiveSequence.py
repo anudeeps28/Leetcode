@@ -1,17 +1,29 @@
 class Solution(object):
-    def longestConsecutive(self, nums):
-        numSet = set(nums)
-        longest = 0
+    # custon alphanumeric function
+    def alphanum(self, c):
+        return(
+            ord("A") <= ord(c) <= ord("Z") 
+            or ord("a") <= ord(c) <= ord("z")
+            or ord("0") <= ord(c) <= ord("9")
+        )
+    
+    def isPalindrome(self, s):
+        l = 0
+        r = len(s) - 1
+        while l < r:
+            while l<r and not self.alphanum(s[l]):
+                l += 1
+            while l<r and not self.alphanum(s[r]):
+                r -= 1
+            if s[l].lower() != s[r].lower():
+                return False
+            l += 1
+            r -= 1
+        return True
 
-        for n in numSet:
-            if (n-1) not in numSet:
-                length = 1
-                while(n+length) in numSet:
-                    length += 1
-                longest = max(longest, length)
-        return longest
 
+        
 if __name__ == "__main__":
     s = Solution()
-    numbers = [100,4,200,1,3,2]
-    print(s.longestConsecutive(numbers))
+    string = "0P"
+    print(s.isPalindrome(string))
