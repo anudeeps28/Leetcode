@@ -8,14 +8,9 @@ class Solution:
             res = res*res
             return x * res if n%2 else res
         
-
-
         res = helper(x, abs(n))
         return res if n >= 0 else 1/res
 
-
-    
-    
 
 if __name__ == "__main__":
     s = Solution()
