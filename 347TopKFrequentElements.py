@@ -1,20 +1,23 @@
+import heapq
+
 class Solution(object):
-    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
-        count = {}
-        freq = [[] for i in range(len(nums) + 1)]
-
-        for n in nums:
-            count[n] = 1 + count.get(n,0)
+    def topKFrequent(self, nums, k):
+        freqMap = {}
+        ans = []
         
-        for n,c in count.items():
-            freq[c].append(n);
+        for num in nums:
+            if not num in freqMap:
+                freqMap[num] = 1
+            else:
+                freqMap[num] += 1
 
-        result = []
-        for i in range(len(freq) -1,  0, -1):
-            for n in freq[i]:
-                result.append(n)
-                if len(result) == k:
-                    return result
+        for key, value in freqMap.items():
+            if len(ans) < k:
+                heapq.heappush(ans, [value, key])
+            else:
+                heapq.heappushpop(ans, [value, key])
+        
+        return [key for value, key in ans]
 
 if __name__ == "__main__":
     s =  Solution()
