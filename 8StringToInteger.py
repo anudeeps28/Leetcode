@@ -1,25 +1,20 @@
 class Solution:
     def myAtoi(self, s: str) -> int:
-        sign = 0
-        # read and ignore any whitespace
-        newS = s.lstrip()
-        # check if the next character is + or -
-        if newS[0] == "-":
-            sign = -1
-        else:
-            sign = 1
-        # read all digit characters
-        digits = " "
-        for num in newS:
-            if num.isdigit():
-                digits += num
-        # convert the string to an int. If no digits, int is 0
-        if not digits:
+        if len(s) == 0 : 
             return 0
-        result = int(digits)*sign
-        # clamp the integers
+        ls = list(s.strip())
         
-        return result
+        sign = -1 if ls[0] == '-' else 1
+        
+        if ls[0] in ['-','+'] : 
+            del ls[0]
+        
+        ret, i = 0, 0
+        while i < len(ls) and ls[i].isdigit() :
+            ret = ret*10 + ord(ls[i]) - ord('0')
+            i += 1
+        
+        return max(-2**31, min(sign * ret,2**31-1))
 
 if __name__ == "__main__":
     s = Solution()
