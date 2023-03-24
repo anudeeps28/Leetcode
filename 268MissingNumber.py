@@ -9,6 +9,17 @@ class Solution:
             return sortedNums[0] - 1
         return sortedNums[-1]+1
 
+    # O(1) memory using bitwise XOR
+    def missingNumber(self, nums: list[int]) -> int:
+        res = len(nums)
+        
+        for i in range(len(nums)):
+            res += (i - nums[i])
+        return res
+    
+    # O(1) memory using bitwise sum
+    # sum of [0-3] - sum of original = 2
+
 
 
 
