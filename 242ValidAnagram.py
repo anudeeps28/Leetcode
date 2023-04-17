@@ -17,6 +17,7 @@ class Solution(object):
                 return False
         return True
 
+    # method - 2
     class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         sortedS = sorted(s)
