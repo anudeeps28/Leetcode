@@ -16,6 +16,7 @@ class Solution(object):
                 heapq.heappush(ans, [value, key])
             else:
                 heapq.heappushpop(ans, [value, key])
+            # (1,2) is considered smaller than (2,3)
         
         return [key for value, key in ans]
 
