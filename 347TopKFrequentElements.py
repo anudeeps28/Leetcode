@@ -18,11 +18,12 @@ class Solution(object):
                 heapq.heappush(ans, [value, key])
             else:
                 heapq.heappushpop(ans, [value, key])
+            # (1,2) is considered smaller than (2,3)
         
         return [key for value, key in ans]
 
 if __name__ == "__main__":
     s =  Solution()
     numbers = [1,1,1,2,2,3]
-    k = 2
-    print(s.topKFrequent(numbers, 2))
+    s.topKFrequent(numbers)
+
