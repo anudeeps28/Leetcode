@@ -1,4 +1,4 @@
-import heapq
+import heapq #in-built heap implementation in python
 
 class Solution(object):
     def topKFrequent(self, nums, k):
@@ -11,6 +11,8 @@ class Solution(object):
             else:
                 freqMap[num] += 1
 
+        # heappush and heappushpop are just meathods of pushing and popping which will maintain the heap
+        # maintaining the heap = will keep just the most frequent elements in the ans array, deleting the less frequent items
         for key, value in freqMap.items():
             if len(ans) < k:
                 heapq.heappush(ans, [value, key])
@@ -22,4 +24,5 @@ class Solution(object):
 if __name__ == "__main__":
     s =  Solution()
     numbers = [1,1,1,2,2,3]
-    s.topKFrequent(numbers)
+    k = 2
+    print(s.topKFrequent(numbers, 2))
